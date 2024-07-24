@@ -15,6 +15,7 @@ env:
 jobs:
   # This workflow contains a single job called "build"
   build:
+    # if: github.ref == 'refs/heads/pr2'
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -22,6 +23,11 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
+      - name: check service name
+        run: |
+          if [[  github.ref == 'refs/heads/pr2' ]]; then
+            exit 1
+          fi
       - name: check service name
         run: |
           if [[ $name == 'Sai' ]]; then
@@ -38,7 +44,6 @@ jobs:
       #     echo Add other actions to build,
       #     echo test, and deploy your project.
   deploy:
-    if: github.ref == 'refs/heads/pr1'
     needs: [build]
     runs-on: ubuntu-latest
     steps:
