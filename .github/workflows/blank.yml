@@ -11,6 +11,7 @@ on:
 
 env:
   name: 'sai'
+  BRANCH: ${{ github.ref }}
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
@@ -25,7 +26,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: check service name
         run: |
-          if [[  github.ref == 'refs/heads/pr1' ]]; then
+          if [[  $BRANCH == 'refs/heads/pr1' ]]; then
             exit 1
           fi
       - name: check service name
