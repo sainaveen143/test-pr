@@ -38,7 +38,7 @@ jobs:
       #     echo Add other actions to build,
       #     echo test, and deploy your project.
   deploy:
-    if: ${{ env.name }} == 'Sai'
+    if: ${{ $name == 'Sai' }}
     needs: [build]
     runs-on: ubuntu-latest
     steps:
